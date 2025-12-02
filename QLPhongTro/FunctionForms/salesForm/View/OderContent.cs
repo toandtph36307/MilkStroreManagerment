@@ -19,7 +19,7 @@ namespace QLPhongTro.FunctionForms.CustomerForm.View
         public OderContent()
         {
             InitializeComponent();
-            btnClose.BringToFront();
+
             dvgOrder.AutoGenerateColumns = false;
             dvgOrder.Dock = DockStyle.Fill; 
 
@@ -82,8 +82,43 @@ namespace QLPhongTro.FunctionForms.CustomerForm.View
             dvgOrder.Columns["colDelete"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dvgOrder.Columns["colDelete"].FillWeight = 10;
 
+            
+            this.Resize += OderContent_Resize;
+            this.Layout += OderContent_Layout;
+            this.ParentChanged += OderContent_ParentChanged;
+
+            PositionCloseButton();
+            btnClose.BringToFront();
         }
             
+        private void OderContent_ParentChanged(object sender, EventArgs e)
+        {
+            PositionCloseButton();
+            btnClose.BringToFront();
+        }
+
+        private void OderContent_Layout(object sender, LayoutEventArgs e)
+        {
+            PositionCloseButton();
+        }
+
+        private void OderContent_Resize(object sender, EventArgs e)
+        {
+            PositionCloseButton();
+        }
+
+        private void PositionCloseButton()
+        {
+            const int margin = 6;
+
+            if (btnClose == null) return;
+
+            int x = Math.Max(0, this.ClientSize.Width - btnClose.Width - margin);
+            int y = Math.Max(0, margin);
+            btnClose.Location = new Point(x, y);
+
+            btnClose.BringToFront();
+        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {

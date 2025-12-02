@@ -110,16 +110,16 @@
             this.btnClose.Location = new System.Drawing.Point(1023, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.btnClose.Size = new System.Drawing.Size(32, 32);
+            this.btnClose.Size = new System.Drawing.Size(30, 30);
             this.btnClose.TabIndex = 4;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click_1);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // OderContent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dvgOrder);
+            this.Controls.Add(this.btnClose);
             this.Name = "OderContent";
             this.Size = new System.Drawing.Size(1060, 693);
             ((System.ComponentModel.ISupportInitialize)(this.dvgOrder)).EndInit();

@@ -59,23 +59,19 @@ namespace QLPhongTro.FunctionForms.salesForm.View
                 {
                     lstProductSuggestion.DataSource = suggestions;
                     lstProductSuggestion.DisplayMember = null;
-                    lstProductSuggestion.Visible = true;
-                    lstProductSuggestion.BringToFront();
+
+                    ShowProductSuggestion();
+
                     int itemCount = suggestions.Length;
                     int itemHeight = lstProductSuggestion.ItemHeight;
                     int borderHeight = SystemInformation.BorderSize.Height * 4;
                     int desiredHeight = (itemHeight * itemCount) + borderHeight;
                     lstProductSuggestion.Height = Math.Min(desiredHeight, 676);
-                }
-                else
-                {
-                    lstProductSuggestion.Visible = false;
+                    return;
                 }
             }
-            else
-            {
-                lstProductSuggestion.Visible = false;
-            }
+
+            lstProductSuggestion.Visible = false;
         }
 
         private void lstProductSuggestion_Leave(object sender, EventArgs e)
@@ -176,22 +172,19 @@ namespace QLPhongTro.FunctionForms.salesForm.View
                 {
                     lstCustomerSuggestion.DataSource = suggestions;
                     lstCustomerSuggestion.DisplayMember = null;
-                    lstCustomerSuggestion.Visible = true;
+
+                    ShowCustomerSuggestion();
+
                     int itemCount = suggestions.Length;
                     int itemHeight = lstCustomerSuggestion.ItemHeight;
                     int borderHeight = SystemInformation.BorderSize.Height * 4;
                     int desiredHeight = (itemHeight * itemCount) + borderHeight;
                     lstCustomerSuggestion.Height = Math.Min(desiredHeight, 400);
-                }
-                else
-                {
-                    lstCustomerSuggestion.Visible = false;
+                    return;
                 }
             }
-            else
-            {
-                lstCustomerSuggestion.Visible = false;
-            }
+
+            lstCustomerSuggestion.Visible = false;
         }
 
         private CustomerSuggestion[] GetCustomerSuggestions(string searchText)
@@ -552,12 +545,51 @@ namespace QLPhongTro.FunctionForms.salesForm.View
 
         }
 
-        private void Sales_Load_1(object sender, EventArgs e)
+        private void ShowProductSuggestion()
+        {
+            if (lstProductSuggestion.Parent != this)
+            {
+                var prev = lstProductSuggestion.Parent;
+                prev?.Controls.Remove(lstProductSuggestion);
+                this.Controls.Add(lstProductSuggestion);
+            }
+
+            var screenPoint = txtSearchProduct.PointToScreen(new System.Drawing.Point(0, txtSearchProduct.Height));
+            var clientPoint = this.PointToClient(screenPoint);
+            lstProductSuggestion.Location = new System.Drawing.Point(clientPoint.X, clientPoint.Y);
+
+            lstProductSuggestion.Width = txtSearchProduct.Width;
+
+            lstProductSuggestion.BringToFront();
+            lstProductSuggestion.Visible = true;
+        }
+
+        private void ShowCustomerSuggestion()
+        {
+            if (lstCustomerSuggestion.Parent != this)
+            {
+                var prev = lstCustomerSuggestion.Parent;
+                prev?.Controls.Remove(lstCustomerSuggestion);
+                this.Controls.Add(lstCustomerSuggestion);
+            }
+
+            var screenPoint = txtCustomersSearch.PointToScreen(new System.Drawing.Point(0, txtCustomersSearch.Height));
+            var clientPoint = this.PointToClient(screenPoint);
+            lstCustomerSuggestion.Location = new System.Drawing.Point(clientPoint.X, clientPoint.Y);
+            lstCustomerSuggestion.Width = txtCustomersSearch.Width;
+
+            lstCustomerSuggestion.BringToFront();
+            lstCustomerSuggestion.Visible = true;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
 
         }
     }
 }
+
+
 
 
 

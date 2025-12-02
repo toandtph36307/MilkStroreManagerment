@@ -57,7 +57,7 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.Customers = new System.Windows.Forms.Button();
             this.panel25 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.CustomerGroups = new System.Windows.Forms.Button();
             this.panel26 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.VendorGroup = new System.Windows.Forms.FlowLayoutPanel();
@@ -261,9 +261,9 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Controls.Add(this.TaskGroup);
             this.flowLayoutPanel1.Controls.Add(this.Category);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
-            this.flowLayoutPanel1.Controls.Add(this.TaskGroup);
             this.flowLayoutPanel1.Controls.Add(this.VendorGroup);
             this.flowLayoutPanel1.Controls.Add(this.WarehouseGroup);
             this.flowLayoutPanel1.Controls.Add(this.StatisticsGroup);
@@ -283,7 +283,7 @@
             this.Category.Controls.Add(this.panel7);
             this.Category.Controls.Add(this.panel9);
             this.Category.Controls.Add(this.panel8);
-            this.Category.Location = new System.Drawing.Point(4, 4);
+            this.Category.Location = new System.Drawing.Point(4, 67);
             this.Category.Margin = new System.Windows.Forms.Padding(4);
             this.Category.MaximumSize = new System.Drawing.Size(279, 154);
             this.Category.MinimumSize = new System.Drawing.Size(279, 55);
@@ -388,7 +388,7 @@
             this.flowLayoutPanel2.Controls.Add(this.panel22);
             this.flowLayoutPanel2.Controls.Add(this.panel23);
             this.flowLayoutPanel2.Controls.Add(this.panel24);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 67);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 130);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.MaximumSize = new System.Drawing.Size(279, 57);
             this.flowLayoutPanel2.MinimumSize = new System.Drawing.Size(279, 55);
@@ -454,7 +454,7 @@
             this.TaskGroup.Controls.Add(this.panel12);
             this.TaskGroup.Controls.Add(this.panel25);
             this.TaskGroup.Controls.Add(this.panel26);
-            this.TaskGroup.Location = new System.Drawing.Point(4, 132);
+            this.TaskGroup.Location = new System.Drawing.Point(4, 4);
             this.TaskGroup.Margin = new System.Windows.Forms.Padding(4);
             this.TaskGroup.MaximumSize = new System.Drawing.Size(279, 215);
             this.TaskGroup.MinimumSize = new System.Drawing.Size(279, 55);
@@ -521,29 +521,30 @@
             // 
             // panel25
             // 
-            this.panel25.Controls.Add(this.button2);
+            this.panel25.Controls.Add(this.CustomerGroups);
             this.panel25.Location = new System.Drawing.Point(0, 108);
             this.panel25.Margin = new System.Windows.Forms.Padding(0);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(279, 50);
             this.panel25.TabIndex = 3;
             // 
-            // button2
+            // CustomerGroups
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(-4, -7);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(295, 68);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Customer Group";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.button2.UseVisualStyleBackColor = false;
+            this.CustomerGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
+            this.CustomerGroups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CustomerGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerGroups.ForeColor = System.Drawing.Color.Black;
+            this.CustomerGroups.Location = new System.Drawing.Point(-4, -7);
+            this.CustomerGroups.Margin = new System.Windows.Forms.Padding(4);
+            this.CustomerGroups.Name = "CustomerGroups";
+            this.CustomerGroups.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.CustomerGroups.Size = new System.Drawing.Size(295, 68);
+            this.CustomerGroups.TabIndex = 0;
+            this.CustomerGroups.Text = "Customer Group";
+            this.CustomerGroups.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CustomerGroups.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.CustomerGroups.UseVisualStyleBackColor = false;
+            this.CustomerGroups.Click += new System.EventHandler(this.CustomerGroups_Click);
             // 
             // panel26
             // 
@@ -1382,7 +1383,7 @@
         private System.Windows.Forms.Panel panel23;
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.Panel panel25;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button CustomerGroups;
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.FlowLayoutPanel VendorGroup;

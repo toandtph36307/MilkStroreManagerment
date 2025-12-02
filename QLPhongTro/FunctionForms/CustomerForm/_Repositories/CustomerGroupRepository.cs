@@ -1,4 +1,3 @@
-csharp FunctionForms\CustomerForm\_Repositories\CustomerGroupRepository.cs
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,7 +7,7 @@ using QLPhongTro.FunctionForms.CustomerForm.Models;
 
 namespace QLPhongTro.FunctionForms.CustomerForm._Repositories
 {
-    public class CustomerGroupRepository
+    public class CustomerGroupRepository : ICustomerGroupRepository
     {
         private readonly string _connectionString;
 
@@ -26,6 +25,52 @@ namespace QLPhongTro.FunctionForms.CustomerForm._Repositories
                 : @"Data Source=DANGTHETOAN\TOANDT11;Initial Catalog=MilkStoreManagement;Integrated Security=True";
         }
 
+        public void Add(CustomerGroupModel model)
+        {
+            using (var conn = new SqlConnection(_connectionString))
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "INSERT INTO CustomerGroups ([name], [description], created_at) VALUES (@name, @description, @created_at)";
+                cmd.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = model.Name ?? string.Empty;
+                cmd.Parameters.Add("@description", SqlDbType.NVarChar, -1).Value = (object)model.Description ?? DBNull.Value;
+                cmd.Parameters.Add("@created_at", SqlDbType.DateTime).Value = model.CreatedAt == DateTime.MinValue ? DateTime.Now : model.CreatedAt;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void Edit(CustomerGroupModel model)
+        {
+            using (var conn = new SqlConnection(_connectionString))
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "UPDATE CustomerGroups SET [name] = @name, [description] = @description WHERE group_id = @group_id";
+                cmd.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = model.Name ?? string.Empty;
+                cmd.Parameters.Add("@description", SqlDbType.NVarChar, -1).Value = (object)model.Description ?? DBNull.Value;
+                cmd.Parameters.Add("@group_id", SqlDbType.Int).Value = model.GroupId;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var conn = new SqlConnection(_connectionString))
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "DELETE FROM CustomerGroups WHERE group_id = @group_id";
+                cmd.Parameters.Add("@group_id", SqlDbType.Int).Value = id;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public IEnumerable<CustomerGroupModel> GetAll()
         {
             var list = new List<CustomerGroupModel>();
@@ -35,39 +80,51 @@ namespace QLPhongTro.FunctionForms.CustomerForm._Repositories
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT group_id, [name], [description], created_at FROM CustomerGroups ORDER BY group_id DESC";
                 conn.Open();
-                using (var r = cmd.ExecuteReader())
+                using (var rdr = cmd.ExecuteReader())
                 {
-                    while (r.Read())
+                    while (rdr.Read())
                     {
-                        var g = new CustomerGroupModel
+                        list.Add(new CustomerGroupModel
                         {
-                            GroupId = r.IsDBNull(0) ? 0 : r.GetInt32(0),
-                            Name = r.IsDBNull(1) ? null : r.GetString(1),
-                            Description = r.IsDBNull(2) ? null : r.GetString(2),
-                            CreatedAt = r.IsDBNull(3) ? DateTime.MinValue : r.GetDateTime(3)
-                        };
-                        list.Add(g);
+                            GroupId = rdr.IsDBNull(0) ? 0 : rdr.GetInt32(0),
+                            Name = rdr.IsDBNull(1) ? string.Empty : rdr.GetString(1),
+                            Description = rdr.IsDBNull(2) ? null : rdr.GetString(2),
+                            CreatedAt = rdr.IsDBNull(3) ? DateTime.MinValue : rdr.GetDateTime(3)
+                        });
                     }
                 }
             }
             return list;
         }
 
-        public int Insert(CustomerGroupModel model)
+        public IEnumerable<CustomerGroupModel> GetByValue(string value)
         {
+            var list = new List<CustomerGroupModel>();
+            int id = int.TryParse(value, out _) ? Convert.ToInt32(value) : 0;
             using (var conn = new SqlConnection(_connectionString))
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO CustomerGroups ([name], [description], created_at) VALUES (@name, @description, @created_at); SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("@name", model.Name);
-                cmd.Parameters.AddWithValue("@description", (object)model.Description ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@created_at", model.CreatedAt == DateTime.MinValue ? (object)DateTime.Now : model.CreatedAt);
+                cmd.CommandText = "SELECT group_id, [name], [description], created_at FROM CustomerGroups WHERE group_id = @id OR [name] LIKE @name + '%' ORDER BY group_id DESC";
+                cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = value ?? string.Empty;
 
                 conn.Open();
-                var scalar = cmd.ExecuteScalar();
-                return Convert.ToInt32(scalar);
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        list.Add(new CustomerGroupModel
+                        {
+                            GroupId = rdr.IsDBNull(0) ? 0 : rdr.GetInt32(0),
+                            Name = rdr.IsDBNull(1) ? string.Empty : rdr.GetString(1),
+                            Description = rdr.IsDBNull(2) ? null : rdr.GetString(2),
+                            CreatedAt = rdr.IsDBNull(3) ? DateTime.MinValue : rdr.GetDateTime(3)
+                        });
+                    }
+                }
             }
+            return list;
         }
     }
 }

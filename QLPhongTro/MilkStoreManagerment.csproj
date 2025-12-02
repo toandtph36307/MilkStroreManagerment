@@ -59,7 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FunctionForms\CustomerForm\Models\CustomerGroupModel.cs" />
+    <Compile Include="FunctionForms\CustomerForm\Models\ICustomerGroupRepository.cs" />
     <Compile Include="FunctionForms\CustomerForm\Presenters\common\ModelDataValidation.cs" />
+    <Compile Include="FunctionForms\CustomerForm\Presenters\CustomerGroupPresenter.cs" />
     <Compile Include="FunctionForms\CustomerForm\Presenters\CustomerPresenter.cs" />
     <Compile Include="FunctionForms\CustomerForm\View\CustomerGroups.cs">
       <SubType>Form</SubType>
@@ -106,6 +108,7 @@
     <Compile Include="Database.cs" />
     <Compile Include="FunctionForms\CustomerForm\Models\CustomerModel.cs" />
     <Compile Include="FunctionForms\CustomerForm\Models\ICustomerRepository.cs" />
+    <Compile Include="FunctionForms\CustomerForm\View\ICustomerGroupView.cs" />
     <Compile Include="FunctionForms\CustomerForm\_Repositories\CustomerGroupRepository.cs" />
     <Compile Include="FunctionForms\OverViewForm\BLL\DashBoardBLL.cs" />
     <Compile Include="FunctionForms\OverViewForm\DAL\DashboardService.cs" />

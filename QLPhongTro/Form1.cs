@@ -1,7 +1,15 @@
 ﻿using QLPhongTro.ChildForm;
+using QLPhongTro.FunctionForms.CustomerForm._Repositories;
+using QLPhongTro.FunctionForms.CustomerForm.Presenters;
+using QLPhongTro.FunctionForms.CustomerForm.View;
+using QLPhongTro.FunctionForms.OverViewForm._Repositories;
+using QLPhongTro.FunctionForms.OverViewForm.Models;
+using QLPhongTro.FunctionForms.OverViewForm.Presenters;
+using QLPhongTro.FunctionForms.OverViewForm.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -9,11 +17,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using QLPhongTro.FunctionForms.OverViewForm.View;
-using QLPhongTro.FunctionForms.OverViewForm.Models;
-using QLPhongTro.FunctionForms.OverViewForm.Presenters;
-using QLPhongTro.FunctionForms.OverViewForm._Repositories;
 
 
 namespace QLPhongTro
@@ -439,6 +442,16 @@ namespace QLPhongTro
         {
             var f = new FunctionForms.salesForm.View.Sales();
             AddForm(f);
+        }
+
+        private void CustomerGroups_Click(object sender, EventArgs e)
+        {
+            string sqlConnectionString = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
+            ICustomerGroupView view = new CustomerGroups();
+            CustomerGroupRepository repository = new CustomerGroupRepository(sqlConnectionString);
+            new CustomerGroupPresenter(view, repository);
+
+            AddForm((Form)view);
         }
     }
 }

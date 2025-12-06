@@ -59,7 +59,7 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Presenters
             view.email = "";
             view.phone = "";
             view.address = "";
-
+            view.status = "Active";
         }
         private void CancelAction(object sender, EventArgs e)
         {
@@ -78,6 +78,9 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Presenters
             model.Email = view.email;
             model.Phone = view.phone;
             model.Address = view.address;
+
+            model.Status = string.IsNullOrEmpty(view.status) ? "Active" : view.status;
+
             try
             {
                 new ModelDataValidation().Validate(model);
@@ -127,6 +130,7 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Presenters
             view.email = customer.Email;
             view.phone = customer.Phone;
             view.address = customer.Address;   
+            view.status = customer.Status; 
             view.IsEdit = true;
         }
 
@@ -134,7 +138,5 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Presenters
         {
             view.IsEdit = false;
         }
-
-
     }
 }

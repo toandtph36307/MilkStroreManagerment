@@ -77,10 +77,6 @@ namespace QLPhongTro.ChildForm
                     MessageBox.Show(Message);
                 }
             };
-
-
-
-
         }
 
         public string customer_id 
@@ -108,6 +104,33 @@ namespace QLPhongTro.ChildForm
             get { return txtCustomerAddress.Text; }
             set { txtCustomerAddress.Text = value; }
         }
+
+
+        public string status
+        {
+            get
+            {
+                try
+                {
+                    if (cmbStatus.SelectedItem != null)
+                        return cmbStatus.SelectedItem.ToString();
+                    if (!string.IsNullOrEmpty(cmbStatus.Text))
+                        return cmbStatus.Text;
+                }
+                catch { }
+                return "Active";
+            }
+            set
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(value)) value = "Active";
+                    cmbStatus.SelectedItem = value;
+                }
+                catch { }
+            }
+        }
+
         public string SearchValue 
         {
             get { return txtSearch.Text; }

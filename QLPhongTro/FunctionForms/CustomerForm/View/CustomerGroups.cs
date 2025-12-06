@@ -198,7 +198,7 @@ namespace QLPhongTro.FunctionForms.CustomerForm.View
             }
             catch
             {
-                try { dataGridView.DataSource = groupList; } catch { }
+                try { dvgCustomerGroups.DataSource = groupList; } catch { }
             }
         }
 

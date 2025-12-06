@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QLPhongTro.FunctionForms.OverViewForm.View
@@ -14,6 +10,9 @@ namespace QLPhongTro.FunctionForms.OverViewForm.View
          string email { get; set; }
          string phone { get; set; }
          string address { get; set; }
+         string status { get; set; }
+
+
 
         string SearchValue { get; set; }
         bool IsEdit { get; set; }

@@ -15,6 +15,7 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Models
         private string email;
         private string phone;
         private string address;
+        private string status;
 
         [DisplayName("Customer ID")]
         public int Customer_id { get => customer_id; set => customer_id = value; }
@@ -38,5 +39,9 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Models
         [Required(ErrorMessage = "Customer Address colour is requerid")]
         [StringLength(500, MinimumLength = 0, ErrorMessage = "Customer Address must be between 0 and 500 characters")]
         public string Address { get => address; set => address = value; }
+
+        [DisplayName("Status")]
+        [StringLength(10)]
+        public string Status { get => status; set => status = value; }
     }
 }

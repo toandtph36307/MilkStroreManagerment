@@ -16,6 +16,7 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Models
         private string phone;
         private string address;
         private string status;
+        private int? groupId; // NEW
 
         [DisplayName("Customer ID")]
         public int Customer_id { get => customer_id; set => customer_id = value; }
@@ -43,5 +44,8 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Models
         [DisplayName("Status")]
         [StringLength(10)]
         public string Status { get => status; set => status = value; }
+
+        [DisplayName("Group Id")]
+        public int? GroupId { get => groupId; set => groupId = value; }
     }
 }

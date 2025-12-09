@@ -37,6 +37,15 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.TaskGroup = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.Task = new System.Windows.Forms.Button();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.Customers = new System.Windows.Forms.Button();
+            this.panel25 = new System.Windows.Forms.Panel();
+            this.CustomerGroups = new System.Windows.Forms.Button();
+            this.panel26 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.Category = new System.Windows.Forms.FlowLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.Caregory = new System.Windows.Forms.Button();
@@ -51,15 +60,6 @@
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel23 = new System.Windows.Forms.Panel();
             this.panel24 = new System.Windows.Forms.Panel();
-            this.TaskGroup = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.Task = new System.Windows.Forms.Button();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.Customers = new System.Windows.Forms.Button();
-            this.panel25 = new System.Windows.Forms.Panel();
-            this.CustomerGroups = new System.Windows.Forms.Button();
-            this.panel26 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
             this.VendorGroup = new System.Windows.Forms.FlowLayoutPanel();
             this.panel27 = new System.Windows.Forms.Panel();
             this.Vendor = new System.Windows.Forms.Button();
@@ -118,17 +118,17 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            this.TaskGroup.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel25.SuspendLayout();
+            this.panel26.SuspendLayout();
             this.Category.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel9.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel21.SuspendLayout();
-            this.TaskGroup.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel25.SuspendLayout();
-            this.panel26.SuspendLayout();
             this.VendorGroup.SuspendLayout();
             this.panel27.SuspendLayout();
             this.panel28.SuspendLayout();
@@ -275,6 +275,131 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(280, 712);
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
+            // 
+            // TaskGroup
+            // 
+            this.TaskGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
+            this.TaskGroup.Controls.Add(this.panel11);
+            this.TaskGroup.Controls.Add(this.panel12);
+            this.TaskGroup.Controls.Add(this.panel25);
+            this.TaskGroup.Controls.Add(this.panel26);
+            this.TaskGroup.Location = new System.Drawing.Point(4, 4);
+            this.TaskGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.TaskGroup.MaximumSize = new System.Drawing.Size(279, 215);
+            this.TaskGroup.MinimumSize = new System.Drawing.Size(279, 55);
+            this.TaskGroup.Name = "TaskGroup";
+            this.TaskGroup.Size = new System.Drawing.Size(279, 55);
+            this.TaskGroup.TabIndex = 5;
+            this.TaskGroup.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.Task);
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Margin = new System.Windows.Forms.Padding(0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(279, 58);
+            this.panel11.TabIndex = 1;
+            // 
+            // Task
+            // 
+            this.Task.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
+            this.Task.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Task.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Task.ForeColor = System.Drawing.Color.Black;
+            this.Task.Image = ((System.Drawing.Image)(resources.GetObject("Task.Image")));
+            this.Task.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Task.Location = new System.Drawing.Point(-4, -5);
+            this.Task.Margin = new System.Windows.Forms.Padding(4);
+            this.Task.Name = "Task";
+            this.Task.Padding = new System.Windows.Forms.Padding(53, 0, 47, 0);
+            this.Task.Size = new System.Drawing.Size(293, 68);
+            this.Task.TabIndex = 0;
+            this.Task.Text = "Customers";
+            this.Task.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Task.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.Task.UseVisualStyleBackColor = false;
+            this.Task.Click += new System.EventHandler(this.CustomerList_Click);
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.Customers);
+            this.panel12.Location = new System.Drawing.Point(0, 58);
+            this.panel12.Margin = new System.Windows.Forms.Padding(0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(279, 50);
+            this.panel12.TabIndex = 2;
+            // 
+            // Customers
+            // 
+            this.Customers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
+            this.Customers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Customers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Customers.ForeColor = System.Drawing.Color.Black;
+            this.Customers.Location = new System.Drawing.Point(-4, -7);
+            this.Customers.Margin = new System.Windows.Forms.Padding(4);
+            this.Customers.Name = "Customers";
+            this.Customers.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.Customers.Size = new System.Drawing.Size(295, 68);
+            this.Customers.TabIndex = 0;
+            this.Customers.Text = "Customers";
+            this.Customers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Customers.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.Customers.UseVisualStyleBackColor = false;
+            this.Customers.Click += new System.EventHandler(this.Customers_Click);
+            // 
+            // panel25
+            // 
+            this.panel25.Controls.Add(this.CustomerGroups);
+            this.panel25.Location = new System.Drawing.Point(0, 108);
+            this.panel25.Margin = new System.Windows.Forms.Padding(0);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(279, 50);
+            this.panel25.TabIndex = 3;
+            // 
+            // CustomerGroups
+            // 
+            this.CustomerGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
+            this.CustomerGroups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CustomerGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerGroups.ForeColor = System.Drawing.Color.Black;
+            this.CustomerGroups.Location = new System.Drawing.Point(-4, -7);
+            this.CustomerGroups.Margin = new System.Windows.Forms.Padding(4);
+            this.CustomerGroups.Name = "CustomerGroups";
+            this.CustomerGroups.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.CustomerGroups.Size = new System.Drawing.Size(295, 68);
+            this.CustomerGroups.TabIndex = 0;
+            this.CustomerGroups.Text = "Customer Group";
+            this.CustomerGroups.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CustomerGroups.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.CustomerGroups.UseVisualStyleBackColor = false;
+            this.CustomerGroups.Click += new System.EventHandler(this.CustomerGroups_Click);
+            // 
+            // panel26
+            // 
+            this.panel26.Controls.Add(this.button3);
+            this.panel26.Location = new System.Drawing.Point(0, 158);
+            this.panel26.Margin = new System.Windows.Forms.Padding(0);
+            this.panel26.Name = "panel26";
+            this.panel26.Size = new System.Drawing.Size(279, 50);
+            this.panel26.TabIndex = 4;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.Location = new System.Drawing.Point(-4, -7);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
+            this.button3.Size = new System.Drawing.Size(295, 68);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "Adjust Customer debt";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // Category
             // 
@@ -446,131 +571,6 @@
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(279, 48);
             this.panel24.TabIndex = 3;
-            // 
-            // TaskGroup
-            // 
-            this.TaskGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
-            this.TaskGroup.Controls.Add(this.panel11);
-            this.TaskGroup.Controls.Add(this.panel12);
-            this.TaskGroup.Controls.Add(this.panel25);
-            this.TaskGroup.Controls.Add(this.panel26);
-            this.TaskGroup.Location = new System.Drawing.Point(4, 4);
-            this.TaskGroup.Margin = new System.Windows.Forms.Padding(4);
-            this.TaskGroup.MaximumSize = new System.Drawing.Size(279, 215);
-            this.TaskGroup.MinimumSize = new System.Drawing.Size(279, 55);
-            this.TaskGroup.Name = "TaskGroup";
-            this.TaskGroup.Size = new System.Drawing.Size(279, 55);
-            this.TaskGroup.TabIndex = 5;
-            this.TaskGroup.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.Task);
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Margin = new System.Windows.Forms.Padding(0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(279, 58);
-            this.panel11.TabIndex = 1;
-            // 
-            // Task
-            // 
-            this.Task.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
-            this.Task.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Task.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Task.ForeColor = System.Drawing.Color.Black;
-            this.Task.Image = ((System.Drawing.Image)(resources.GetObject("Task.Image")));
-            this.Task.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Task.Location = new System.Drawing.Point(-4, -5);
-            this.Task.Margin = new System.Windows.Forms.Padding(4);
-            this.Task.Name = "Task";
-            this.Task.Padding = new System.Windows.Forms.Padding(53, 0, 47, 0);
-            this.Task.Size = new System.Drawing.Size(293, 68);
-            this.Task.TabIndex = 0;
-            this.Task.Text = "Customers";
-            this.Task.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Task.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.Task.UseVisualStyleBackColor = false;
-            this.Task.Click += new System.EventHandler(this.CustomerList_Click);
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.Customers);
-            this.panel12.Location = new System.Drawing.Point(0, 58);
-            this.panel12.Margin = new System.Windows.Forms.Padding(0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(279, 50);
-            this.panel12.TabIndex = 2;
-            // 
-            // Customers
-            // 
-            this.Customers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
-            this.Customers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Customers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Customers.ForeColor = System.Drawing.Color.Black;
-            this.Customers.Location = new System.Drawing.Point(-4, -7);
-            this.Customers.Margin = new System.Windows.Forms.Padding(4);
-            this.Customers.Name = "Customers";
-            this.Customers.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
-            this.Customers.Size = new System.Drawing.Size(295, 68);
-            this.Customers.TabIndex = 0;
-            this.Customers.Text = "Customers";
-            this.Customers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Customers.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.Customers.UseVisualStyleBackColor = false;
-            this.Customers.Click += new System.EventHandler(this.Customers_Click);
-            // 
-            // panel25
-            // 
-            this.panel25.Controls.Add(this.CustomerGroups);
-            this.panel25.Location = new System.Drawing.Point(0, 108);
-            this.panel25.Margin = new System.Windows.Forms.Padding(0);
-            this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(279, 50);
-            this.panel25.TabIndex = 3;
-            // 
-            // CustomerGroups
-            // 
-            this.CustomerGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
-            this.CustomerGroups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CustomerGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerGroups.ForeColor = System.Drawing.Color.Black;
-            this.CustomerGroups.Location = new System.Drawing.Point(-4, -7);
-            this.CustomerGroups.Margin = new System.Windows.Forms.Padding(4);
-            this.CustomerGroups.Name = "CustomerGroups";
-            this.CustomerGroups.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
-            this.CustomerGroups.Size = new System.Drawing.Size(295, 68);
-            this.CustomerGroups.TabIndex = 0;
-            this.CustomerGroups.Text = "Customer Group";
-            this.CustomerGroups.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CustomerGroups.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.CustomerGroups.UseVisualStyleBackColor = false;
-            this.CustomerGroups.Click += new System.EventHandler(this.CustomerGroups_Click);
-            // 
-            // panel26
-            // 
-            this.panel26.Controls.Add(this.button3);
-            this.panel26.Location = new System.Drawing.Point(0, 158);
-            this.panel26.Margin = new System.Windows.Forms.Padding(0);
-            this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(279, 50);
-            this.panel26.TabIndex = 4;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(-4, -7);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(67, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(295, 68);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Adjust Customer debt";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // VendorGroup
             // 
@@ -1282,17 +1282,17 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.TaskGroup.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel25.ResumeLayout(false);
+            this.panel26.ResumeLayout(false);
             this.Category.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.panel21.ResumeLayout(false);
-            this.TaskGroup.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.panel25.ResumeLayout(false);
-            this.panel26.ResumeLayout(false);
             this.VendorGroup.ResumeLayout(false);
             this.panel27.ResumeLayout(false);
             this.panel28.ResumeLayout(false);

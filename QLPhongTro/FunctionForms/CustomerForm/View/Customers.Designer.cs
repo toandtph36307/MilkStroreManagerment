@@ -44,7 +44,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.cmbStatus = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.guna2ComboBox3 = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cbbCusGrDetail = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtCustomerAddress = new System.Windows.Forms.TextBox();
@@ -53,8 +53,8 @@
             this.tabPageCustomerList = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cbbCustomerGroups = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cbbStatusFilter = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cbbCusGrFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.dataGridView = new Guna.UI2.WinForms.Guna2DataGridView();
             this.btnDelete = new Guna.UI2.WinForms.Guna2Button();
             this.btnEdit = new Guna.UI2.WinForms.Guna2Button();
@@ -158,7 +158,7 @@
             this.tabPageCustomerDetail.Controls.Add(this.label10);
             this.tabPageCustomerDetail.Controls.Add(this.label11);
             this.tabPageCustomerDetail.Controls.Add(this.cmbStatus);
-            this.tabPageCustomerDetail.Controls.Add(this.guna2ComboBox3);
+            this.tabPageCustomerDetail.Controls.Add(this.cbbCusGrDetail);
             this.tabPageCustomerDetail.Controls.Add(this.guna2PictureBox1);
             this.tabPageCustomerDetail.Controls.Add(this.label7);
             this.tabPageCustomerDetail.Controls.Add(this.txtCustomerAddress);
@@ -223,23 +223,23 @@
             this.cmbStatus.StartIndex = 0;
             this.cmbStatus.TabIndex = 22;
             // 
-            // guna2ComboBox3
+            // cbbCusGrDetail
             // 
-            this.guna2ComboBox3.AutoRoundedCorners = true;
-            this.guna2ComboBox3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ComboBox3.BorderColor = System.Drawing.Color.Black;
-            this.guna2ComboBox3.BorderRadius = 17;
-            this.guna2ComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.guna2ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.guna2ComboBox3.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox3.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.guna2ComboBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.guna2ComboBox3.ItemHeight = 30;
-            this.guna2ComboBox3.Location = new System.Drawing.Point(389, 323);
-            this.guna2ComboBox3.Name = "guna2ComboBox3";
-            this.guna2ComboBox3.Size = new System.Drawing.Size(166, 36);
-            this.guna2ComboBox3.TabIndex = 21;
+            this.cbbCusGrDetail.AutoRoundedCorners = true;
+            this.cbbCusGrDetail.BackColor = System.Drawing.Color.Transparent;
+            this.cbbCusGrDetail.BorderColor = System.Drawing.Color.Black;
+            this.cbbCusGrDetail.BorderRadius = 17;
+            this.cbbCusGrDetail.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbbCusGrDetail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbCusGrDetail.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbbCusGrDetail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbbCusGrDetail.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbbCusGrDetail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbbCusGrDetail.ItemHeight = 30;
+            this.cbbCusGrDetail.Location = new System.Drawing.Point(389, 323);
+            this.cbbCusGrDetail.Name = "cbbCusGrDetail";
+            this.cbbCusGrDetail.Size = new System.Drawing.Size(166, 36);
+            this.cbbCusGrDetail.TabIndex = 21;
             // 
             // guna2PictureBox1
             // 
@@ -294,8 +294,8 @@
             // 
             this.tabPageCustomerList.Controls.Add(this.label8);
             this.tabPageCustomerList.Controls.Add(this.label9);
-            this.tabPageCustomerList.Controls.Add(this.guna2ComboBox1);
-            this.tabPageCustomerList.Controls.Add(this.cbbCustomerGroups);
+            this.tabPageCustomerList.Controls.Add(this.cbbStatusFilter);
+            this.tabPageCustomerList.Controls.Add(this.cbbCusGrFilter);
             this.tabPageCustomerList.Controls.Add(this.dataGridView);
             this.tabPageCustomerList.Controls.Add(this.btnDelete);
             this.tabPageCustomerList.Controls.Add(this.btnEdit);
@@ -334,46 +334,46 @@
             this.label9.TabIndex = 19;
             this.label9.Text = "Customers Groups";
             // 
-            // guna2ComboBox1
+            // cbbStatusFilter
             // 
-            this.guna2ComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2ComboBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ComboBox1.BorderColor = System.Drawing.Color.Black;
-            this.guna2ComboBox1.BorderRadius = 17;
-            this.guna2ComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.guna2ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.guna2ComboBox1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.guna2ComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.guna2ComboBox1.ItemHeight = 30;
-            this.guna2ComboBox1.Items.AddRange(new object[] {
+            this.cbbStatusFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbStatusFilter.BackColor = System.Drawing.Color.Transparent;
+            this.cbbStatusFilter.BorderColor = System.Drawing.Color.Black;
+            this.cbbStatusFilter.BorderRadius = 17;
+            this.cbbStatusFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbbStatusFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbStatusFilter.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbbStatusFilter.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbbStatusFilter.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbbStatusFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbbStatusFilter.ItemHeight = 30;
+            this.cbbStatusFilter.Items.AddRange(new object[] {
             "Active",
             "Inactive"});
-            this.guna2ComboBox1.Location = new System.Drawing.Point(881, 9);
-            this.guna2ComboBox1.Name = "guna2ComboBox1";
-            this.guna2ComboBox1.Size = new System.Drawing.Size(166, 36);
-            this.guna2ComboBox1.StartIndex = 0;
-            this.guna2ComboBox1.TabIndex = 18;
+            this.cbbStatusFilter.Location = new System.Drawing.Point(881, 9);
+            this.cbbStatusFilter.Name = "cbbStatusFilter";
+            this.cbbStatusFilter.Size = new System.Drawing.Size(166, 36);
+            this.cbbStatusFilter.StartIndex = 0;
+            this.cbbStatusFilter.TabIndex = 18;
             // 
-            // cbbCustomerGroups
+            // cbbCusGrFilter
             // 
-            this.cbbCustomerGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbbCustomerGroups.AutoRoundedCorners = true;
-            this.cbbCustomerGroups.BackColor = System.Drawing.Color.Transparent;
-            this.cbbCustomerGroups.BorderColor = System.Drawing.Color.Black;
-            this.cbbCustomerGroups.BorderRadius = 17;
-            this.cbbCustomerGroups.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbbCustomerGroups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbCustomerGroups.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbbCustomerGroups.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbbCustomerGroups.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cbbCustomerGroups.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbbCustomerGroups.ItemHeight = 30;
-            this.cbbCustomerGroups.Location = new System.Drawing.Point(707, 9);
-            this.cbbCustomerGroups.Name = "cbbCustomerGroups";
-            this.cbbCustomerGroups.Size = new System.Drawing.Size(166, 36);
-            this.cbbCustomerGroups.TabIndex = 17;
+            this.cbbCusGrFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbCusGrFilter.AutoRoundedCorners = true;
+            this.cbbCusGrFilter.BackColor = System.Drawing.Color.Transparent;
+            this.cbbCusGrFilter.BorderColor = System.Drawing.Color.Black;
+            this.cbbCusGrFilter.BorderRadius = 17;
+            this.cbbCusGrFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbbCusGrFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbCusGrFilter.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbbCusGrFilter.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbbCusGrFilter.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbbCusGrFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbbCusGrFilter.ItemHeight = 30;
+            this.cbbCusGrFilter.Location = new System.Drawing.Point(707, 9);
+            this.cbbCusGrFilter.Name = "cbbCusGrFilter";
+            this.cbbCusGrFilter.Size = new System.Drawing.Size(166, 36);
+            this.cbbCusGrFilter.TabIndex = 17;
             // 
             // dataGridView
             // 
@@ -621,11 +621,11 @@
         private Guna.UI2.WinForms.Guna2DataGridView dataGridView;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
-        private Guna.UI2.WinForms.Guna2ComboBox cbbCustomerGroups;
+        private Guna.UI2.WinForms.Guna2ComboBox cbbStatusFilter;
+        private Guna.UI2.WinForms.Guna2ComboBox cbbCusGrFilter;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private Guna.UI2.WinForms.Guna2ComboBox cmbStatus;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox3;
+        private Guna.UI2.WinForms.Guna2ComboBox cbbCusGrDetail;
     }
 }

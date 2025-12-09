@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using QLPhongTro.FunctionForms.CustomerForm._Repositories;
+using QLPhongTro.FunctionForms.CustomerForm.Models;
+
 namespace QLPhongTro.ChildForm
 {
     public partial class Customers : Form , ICustomerView
@@ -20,8 +23,14 @@ namespace QLPhongTro.ChildForm
         public Customers()
         {
             InitializeComponent();
+            
+            try { txtCustomerId.ReadOnly = true; }
+            catch { }
+
             AssociateAndRaiseViewEvents();
             tabControl1.TabPages.Remove(tabPageCustomerDetail);
+
+            LoadCustomerGroupsDetail();
         }
 
         private void AssociateAndRaiseViewEvents()
@@ -38,7 +47,7 @@ namespace QLPhongTro.ChildForm
                 AddNewEvent?.Invoke(this, EventArgs.Empty);
                 tabControl1.TabPages.Remove(tabPageCustomerList);
                 tabControl1.TabPages.Add(tabPageCustomerDetail);
-                tabPageCustomerDetail.Text = "Add new pet";
+                tabPageCustomerDetail.Text = "Add new Customers";
             };
 
             btnEdit.Click += delegate
@@ -46,7 +55,7 @@ namespace QLPhongTro.ChildForm
                 EditEvent?.Invoke(this, EventArgs.Empty);
                 tabControl1.TabPages.Remove(tabPageCustomerList);
                 tabControl1.TabPages.Add(tabPageCustomerDetail);
-                tabPageCustomerDetail.Text = "Edit pet";
+                tabPageCustomerDetail.Text = "Edit Customers";
             };
 
             btnSave.Click += delegate
@@ -77,6 +86,48 @@ namespace QLPhongTro.ChildForm
                     MessageBox.Show(Message);
                 }
             };
+        }
+
+
+        private void LoadCustomerGroupsDetail()
+        {
+            try
+            {
+                var repo = new CustomerGroupRepository();
+                var groups = repo.GetAll().ToList();
+
+                var items = new List<object>();
+                items.Add(new { GroupId = 0, Name = "(None)" });
+                foreach (var g in groups)
+                {
+                    items.Add(new { GroupId = g.GroupId, Name = g.Name });
+                }
+
+                if (cbbCusGrDetail != null)
+                {
+                    cbbCusGrDetail.DisplayMember = "Name";
+                    cbbCusGrDetail.ValueMember = "GroupId";
+                    cbbCusGrDetail.DataSource = items;
+                    cbbCusGrDetail.SelectedValue = 0;
+
+                    cbbCusGrDetail.SelectedIndexChanged -= Cbb_SelectedIndexChanged_RaiseGroupFilter;
+                    cbbCusGrDetail.SelectedIndexChanged += Cbb_SelectedIndexChanged_RaiseGroupFilter;
+                }
+                if (cbbCusGrFilter != null)
+                {
+                    cbbCusGrFilter.SelectedIndexChanged -= Cbb_SelectedIndexChanged_RaiseGroupFilter;
+                    cbbCusGrFilter.SelectedIndexChanged += Cbb_SelectedIndexChanged_RaiseGroupFilter;
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        
+        private void Cbb_SelectedIndexChanged_RaiseGroupFilter(object sender, EventArgs e)
+        {
+            GroupFilterEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public string customer_id 
@@ -131,6 +182,33 @@ namespace QLPhongTro.ChildForm
             }
         }
 
+
+        public string SelectedGroupId
+        {
+            get
+            {
+                try
+                {
+                    if (cbbCusGrDetail == null) return "0";
+                    var val = cbbCusGrDetail.SelectedValue;
+                    return val == null ? "0" : val.ToString();
+                }
+                catch { return "0"; }
+            }
+            set
+            {
+                try
+                {
+                    if (cbbCusGrDetail == null) return;
+                    if (string.IsNullOrEmpty(value)) value = "0";
+                    int v;
+                    if (int.TryParse(value, out v))
+                        cbbCusGrDetail.SelectedValue = v;
+                }
+                catch { }
+            }
+        }
+
         public string SearchValue 
         {
             get { return txtSearch.Text; }
@@ -158,6 +236,8 @@ namespace QLPhongTro.ChildForm
         public event EventHandler DeleteEvent;
         public event EventHandler SaveEvent;
         public event EventHandler CancelEvent;
+
+        public event EventHandler GroupFilterEvent;
 
         public void SetCustomerListBindingSource(BindingSource CustomerList)
         {

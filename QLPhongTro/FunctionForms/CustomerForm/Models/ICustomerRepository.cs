@@ -8,10 +8,12 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Models
 {
     public interface ICustomerRepository
     {
-        void Add(CustomerModel customerModel);
+        
+        int Add(CustomerModel customerModel);
         void Edit(CustomerModel customerModel);
         void Delete(int id);
         IEnumerable<CustomerModel> GetAll();
         IEnumerable<CustomerModel> GetByValue(string value);
+        IEnumerable<CustomerModel> GetByGroup(int groupId);
     }
 }

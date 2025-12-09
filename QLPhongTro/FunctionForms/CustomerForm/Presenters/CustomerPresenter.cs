@@ -8,7 +8,7 @@ using QLPhongTro.FunctionForms.OverViewForm.View;
 using QLPhongTro.FunctionForms.OverViewForm.Models;
 using System.Windows.Forms;
 
-namespace QLPhongTro.FunctionForms.OverViewForm.Presenters
+namespace QLPhongTro.FunctionForms.CustomerForm.Presenters
 {
     public class CustomerPresenter
     {
@@ -39,7 +39,7 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Presenters
 
         private void LoadAllCustomerPetList()
         {
-            customerList = repository.GetAll(); 
+            customerList = repository.GetAll();
             customersBindingSource.DataSource = customerList;
         }
 
@@ -47,39 +47,50 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Presenters
         {
             bool emptyValue = string.IsNullOrWhiteSpace(this.view.SearchValue);
             if (emptyValue == false)
-            customerList = repository.GetByValue(this.view.SearchValue); 
+                customerList = repository.GetByValue(this.view.SearchValue);
             else customerList = repository.GetAll();
             customersBindingSource.DataSource = customerList;
         }
 
         private void CleanviewFields()
         {
-            view.customer_id = "0";
+            view.customer_id = ""; 
             view.full_name = "";
             view.email = "";
             view.phone = "";
             view.address = "";
-            view.status = "Active";
+            try { view.status = "Active"; } catch { }
+            try { view.SelectedGroupId = "0"; } catch { }
         }
+
         private void CancelAction(object sender, EventArgs e)
         {
-            CleanviewFields();  
+            CleanviewFields();
         }
+
         private void LoadAllPetList()
         {
             customerList = repository.GetAll();
             customersBindingSource.DataSource = customerList;//Set data source.
         }
+
         private void SaveCustomer(object sender, EventArgs e)
         {
             var model = new CustomerModel();
-            model.Customer_id = Convert.ToInt32(view.customer_id);
+            model.Customer_id = string.IsNullOrWhiteSpace(view.customer_id) ? 0 : Convert.ToInt32(view.customer_id);
             model.Full_name = view.full_name;
             model.Email = view.email;
             model.Phone = view.phone;
             model.Address = view.address;
 
             model.Status = string.IsNullOrEmpty(view.status) ? "Active" : view.status;
+
+            
+            int gid;
+            if (int.TryParse(view.SelectedGroupId, out gid))
+                model.GroupId = gid == 0 ? (int?)null : gid;
+            else
+                model.GroupId = null;
 
             try
             {
@@ -91,11 +102,12 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Presenters
                 }
                 else //Add new model
                 {
-                    repository.Add(model);
+                    int newId = repository.Add(model);
+                    view.customer_id = newId.ToString();
                     view.Message = "Pet added sucessfully";
                 }
                 view.IsSuccessful = true;
-                LoadAllPetList();   
+                LoadAllPetList();
                 CleanviewFields();
             }
             catch (Exception ex)
@@ -129,14 +141,19 @@ namespace QLPhongTro.FunctionForms.OverViewForm.Presenters
             view.full_name = customer.Full_name;
             view.email = customer.Email;
             view.phone = customer.Phone;
-            view.address = customer.Address;   
-            view.status = customer.Status; 
+            view.address = customer.Address;
+            view.status = customer.Status; // map status to view
+
+            // map group to view
+            view.SelectedGroupId = customer.GroupId.HasValue ? customer.GroupId.Value.ToString() : "0";
+
             view.IsEdit = true;
         }
 
         private void AddCustomer(object sender, EventArgs e)
         {
             view.IsEdit = false;
+            CleanviewFields(); 
         }
     }
 }

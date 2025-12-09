@@ -22,22 +22,27 @@ namespace QLPhongTro.FunctionForms.OverViewForm._Repositories
                     ?? @"Data Source=DANGTHETOAN\TOANDT11;Initial Catalog=MilkStoreManagement;Integrated Security=True";
         }
 
-        public void Add(CustomerModel customerModel)
+        
+        public int Add(CustomerModel customerModel)
         {
             using (var connection = new SqlConnection(_conn))
+            using (var command = new SqlCommand())
             {
-                using (var command = new SqlCommand())
-                {
-                    connection.Open();
-                    command.Connection = connection;
-                    command.CommandText = "INSERT INTO Customers (full_name, email, phone, address, status) VALUES (@full_name, @email, @phone, @address, @statusCus)";
-                    command.Parameters.Add("@full_name", SqlDbType.NVarChar).Value = customerModel.Full_name ?? string.Empty;
-                    command.Parameters.Add("@email", SqlDbType.NVarChar).Value = (object)customerModel.Email ?? DBNull.Value;
-                    command.Parameters.Add("@phone", SqlDbType.NVarChar).Value = (object)customerModel.Phone ?? DBNull.Value;
-                    command.Parameters.Add("@address", SqlDbType.NVarChar).Value = (object)customerModel.Address ?? DBNull.Value;
-                    command.Parameters.Add("@statusCus", SqlDbType.NVarChar, 10).Value = string.IsNullOrEmpty(customerModel.Status) ? "Active" : customerModel.Status;
-                    command.ExecuteNonQuery();
-                }
+                connection.Open();
+                command.Connection = connection;
+                
+                command.CommandText = @"INSERT INTO Customers (full_name, email, phone, address, statusCus, group_id) 
+                                        OUTPUT INSERTED.customer_id
+                                        VALUES (@full_name, @email, @phone, @address, @statusCus, @group_id)";
+                command.Parameters.Add("@full_name", SqlDbType.NVarChar).Value = customerModel.Full_name ?? string.Empty;
+                command.Parameters.Add("@email", SqlDbType.NVarChar).Value = (object)customerModel.Email ?? DBNull.Value;
+                command.Parameters.Add("@phone", SqlDbType.NVarChar).Value = (object)customerModel.Phone ?? DBNull.Value;
+                command.Parameters.Add("@address", SqlDbType.NVarChar).Value = (object)customerModel.Address ?? DBNull.Value;
+                command.Parameters.Add("@statusCus", SqlDbType.NVarChar, 10).Value = string.IsNullOrEmpty(customerModel.Status) ? "Active" : customerModel.Status;
+                command.Parameters.Add("@group_id", SqlDbType.Int).Value = (object)customerModel.GroupId ?? DBNull.Value;
+
+                var result = command.ExecuteScalar();
+                return result == null ? 0 : Convert.ToInt32(result);
             }
         }
 
@@ -64,12 +69,15 @@ namespace QLPhongTro.FunctionForms.OverViewForm._Repositories
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "UPDATE Customers SET full_name = @full_name, email = @email, phone = @phone, address = @address, status = @statusCus WHERE customer_id = @customer_id";
+                    command.CommandText = @"UPDATE Customers 
+                                            SET full_name = @full_name, email = @email, phone = @phone, address = @address, statusCus = @statusCus, group_id = @group_id 
+                                            WHERE customer_id = @customer_id";
                     command.Parameters.Add("@full_name", SqlDbType.NVarChar).Value = customerModel.Full_name ?? string.Empty;
                     command.Parameters.Add("@email", SqlDbType.NVarChar).Value = (object)customerModel.Email ?? DBNull.Value;
                     command.Parameters.Add("@phone", SqlDbType.NVarChar).Value = (object)customerModel.Phone ?? DBNull.Value;
                     command.Parameters.Add("@address", SqlDbType.NVarChar).Value = (object)customerModel.Address ?? DBNull.Value;
                     command.Parameters.Add("@statusCus", SqlDbType.NVarChar, 10).Value = string.IsNullOrEmpty(customerModel.Status) ? "Active" : customerModel.Status;
+                    command.Parameters.Add("@group_id", SqlDbType.Int).Value = (object)customerModel.GroupId ?? DBNull.Value;
                     command.Parameters.Add("@customer_id", SqlDbType.Int).Value = customerModel.Customer_id;
                     command.ExecuteNonQuery();
                 }
@@ -84,18 +92,20 @@ namespace QLPhongTro.FunctionForms.OverViewForm._Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT customer_id, full_name, email, phone, address, statusCus FROM Customers order by customer_id desc;";
+                command.CommandText = "SELECT customer_id, full_name, email, phone, address, statusCus, group_id FROM Customers order by customer_id desc;";
                 using (var reader = command.ExecuteReader())
                 {
-                    while (reader.Read()) 
+                    while (reader.Read())
                     {
-                        var customerModel = new CustomerModel(); 
+                        var customerModel = new CustomerModel();
                         customerModel.Customer_id = reader.GetInt32(reader.GetOrdinal("customer_id"));
                         customerModel.Full_name = reader["full_name"] as string;
                         customerModel.Email = reader["email"] as string;
                         customerModel.Phone = reader["phone"] as string;
                         customerModel.Address = reader["address"] as string;
                         customerModel.Status = reader["statusCus"] as string;
+                        var ord = reader.GetOrdinal("group_id");
+                        customerModel.GroupId = reader.IsDBNull(ord) ? (int?)null : reader.GetInt32(ord);
                         customerList.Add(customerModel);
                     }
                 }
@@ -113,24 +123,59 @@ namespace QLPhongTro.FunctionForms.OverViewForm._Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT customer_id, full_name, email, phone, address, statusCus FROM Customers "
+                command.CommandText = @"SELECT customer_id, full_name, email, phone, address, statusCus, group_id FROM Customers "
                         + "WHERE customer_id = @customer_id OR full_name LIKE @full_name + '%' "
                         + "ORDER BY customer_id DESC;";
                 command.Parameters.Add("@customer_id", SqlDbType.Int).Value = Customer_id;
-                command.Parameters.Add("@full_name", SqlDbType.NVarChar).Value = Full_name;  
+                command.Parameters.Add("@full_name", SqlDbType.NVarChar).Value = Full_name;
 
 
                 using (var reader = command.ExecuteReader())
                 {
-                    while (reader.Read()) 
+                    while (reader.Read())
                     {
-                        var customerModel = new CustomerModel(); 
+                        var customerModel = new CustomerModel();
                         customerModel.Customer_id = reader.GetInt32(reader.GetOrdinal("customer_id"));
                         customerModel.Full_name = reader["full_name"] as string;
                         customerModel.Email = reader["email"] as string;
                         customerModel.Phone = reader["phone"] as string;
                         customerModel.Address = reader["address"] as string;
-                        customerModel.Status = reader["statusCus"] as string; 
+                        customerModel.Status = reader["statusCus"] as string;
+                        var ord = reader.GetOrdinal("group_id");
+                        customerModel.GroupId = reader.IsDBNull(ord) ? (int?)null : reader.GetInt32(ord);
+                        customerList.Add(customerModel);
+                    }
+                }
+            }
+            return customerList;
+        }
+
+        public IEnumerable<CustomerModel> GetByGroup(int groupId)
+        {
+            var customerList = new List<CustomerModel>();
+            using (var connection = new SqlConnection(_conn))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = @"SELECT customer_id, full_name, email, phone, address, statusCus, group_id FROM Customers
+                                        WHERE group_id = @group_id
+                                        ORDER BY customer_id DESC;";
+                command.Parameters.Add("@group_id", SqlDbType.Int).Value = groupId;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var customerModel = new CustomerModel();
+                        customerModel.Customer_id = reader.GetInt32(reader.GetOrdinal("customer_id"));
+                        customerModel.Full_name = reader["full_name"] as string;
+                        customerModel.Email = reader["email"] as string;
+                        customerModel.Phone = reader["phone"] as string;
+                        customerModel.Address = reader["address"] as string;
+                        customerModel.Status = reader["statusCus"] as string;
+                        var ord = reader.GetOrdinal("group_id");
+                        customerModel.GroupId = reader.IsDBNull(ord) ? (int?)null : reader.GetInt32(ord);
                         customerList.Add(customerModel);
                     }
                 }

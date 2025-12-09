@@ -30,6 +30,9 @@ namespace QLPhongTro.FunctionForms.CustomerForm.Presenters
             this.view.SaveEvent += SaveCustomer;
             this.view.CancelEvent += CancelAction;
 
+
+            this.view.GroupFilterEvent += FilterByGroupOrStatus;
+
             this.view.SetCustomerListBindingSource(customersBindingSource);
 
             LoadAllCustomerPetList();
@@ -50,6 +53,33 @@ namespace QLPhongTro.FunctionForms.CustomerForm.Presenters
                 customerList = repository.GetByValue(this.view.SearchValue);
             else customerList = repository.GetAll();
             customersBindingSource.DataSource = customerList;
+        }
+
+
+        private void FilterByGroupOrStatus(object sender, EventArgs e)
+        {
+            try
+            {
+                var list = repository.GetAll().ToList();
+
+                int groupId = 0;
+                if (int.TryParse(view.SelectedGroupId, out var gid))
+                    groupId = gid;
+
+                var statusFilter = (view.SelectedStatusFilter ?? "All").Trim();
+
+                if (groupId > 0)
+                    list = list.Where(c => c.GroupId.HasValue && c.GroupId.Value == groupId).ToList();
+
+                if (!string.IsNullOrEmpty(statusFilter) && !statusFilter.Equals("All", StringComparison.OrdinalIgnoreCase))
+                    list = list.Where(c => string.Equals(c.Status ?? string.Empty, statusFilter, StringComparison.OrdinalIgnoreCase)).ToList();
+
+                customersBindingSource.DataSource = list;
+            }
+            catch
+            {
+                LoadAllCustomerPetList();
+            }
         }
 
         private void CleanviewFields()

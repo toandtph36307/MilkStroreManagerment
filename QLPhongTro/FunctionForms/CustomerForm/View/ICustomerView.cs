@@ -12,8 +12,11 @@ namespace QLPhongTro.FunctionForms.OverViewForm.View
          string address { get; set; }
          string status { get; set; }
 
-       
-        string SelectedGroupId { get; set; }
+         
+         string SelectedGroupId { get; set; }
+
+         
+         string SelectedStatusFilter { get; set; }
 
         string SearchValue { get; set; }
         bool IsEdit { get; set; }
@@ -27,7 +30,7 @@ namespace QLPhongTro.FunctionForms.OverViewForm.View
         event EventHandler SaveEvent;
         event EventHandler CancelEvent;
 
-
+  
         event EventHandler GroupFilterEvent;
 
         void SetCustomerListBindingSource(BindingSource CustomerList);

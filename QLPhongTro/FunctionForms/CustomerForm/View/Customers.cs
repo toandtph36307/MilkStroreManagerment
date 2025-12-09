@@ -31,6 +31,7 @@ namespace QLPhongTro.ChildForm
             tabControl1.TabPages.Remove(tabPageCustomerDetail);
 
             LoadCustomerGroupsDetail();
+            LoadStatusFilter();
         }
 
         private void AssociateAndRaiseViewEvents()
@@ -113,8 +114,19 @@ namespace QLPhongTro.ChildForm
                     cbbCusGrDetail.SelectedIndexChanged -= Cbb_SelectedIndexChanged_RaiseGroupFilter;
                     cbbCusGrDetail.SelectedIndexChanged += Cbb_SelectedIndexChanged_RaiseGroupFilter;
                 }
+
                 if (cbbCusGrFilter != null)
                 {
+                    var itemsFilter = new List<object>();
+                    itemsFilter.Add(new { GroupId = 0, Name = "All" });
+                    foreach (var g in groups)
+                        itemsFilter.Add(new { GroupId = g.GroupId, Name = g.Name });
+
+                    cbbCusGrFilter.DisplayMember = "Name";
+                    cbbCusGrFilter.ValueMember = "GroupId";
+                    cbbCusGrFilter.DataSource = itemsFilter;
+                    cbbCusGrFilter.SelectedValue = 0;
+
                     cbbCusGrFilter.SelectedIndexChanged -= Cbb_SelectedIndexChanged_RaiseGroupFilter;
                     cbbCusGrFilter.SelectedIndexChanged += Cbb_SelectedIndexChanged_RaiseGroupFilter;
                 }
@@ -124,7 +136,26 @@ namespace QLPhongTro.ChildForm
             }
         }
 
-        
+
+        private void LoadStatusFilter()
+        {
+            try
+            {
+                if (cbbStatusFilter != null)
+                {
+                    cbbStatusFilter.Items.Clear();
+                    cbbStatusFilter.Items.Add("All");
+                    cbbStatusFilter.Items.Add("Active");
+                    cbbStatusFilter.Items.Add("Inactive");
+                    cbbStatusFilter.SelectedIndex = 0;
+
+                    cbbStatusFilter.SelectedIndexChanged -= Cbb_SelectedIndexChanged_RaiseGroupFilter;
+                    cbbStatusFilter.SelectedIndexChanged += Cbb_SelectedIndexChanged_RaiseGroupFilter;
+                }
+            }
+            catch { }
+        }
+
         private void Cbb_SelectedIndexChanged_RaiseGroupFilter(object sender, EventArgs e)
         {
             GroupFilterEvent?.Invoke(this, EventArgs.Empty);
@@ -182,7 +213,7 @@ namespace QLPhongTro.ChildForm
             }
         }
 
-
+        
         public string SelectedGroupId
         {
             get
@@ -204,6 +235,40 @@ namespace QLPhongTro.ChildForm
                     int v;
                     if (int.TryParse(value, out v))
                         cbbCusGrDetail.SelectedValue = v;
+                }
+                catch { }
+            }
+        }
+
+
+        public string SelectedStatusFilter
+        {
+            get
+            {
+                try
+                {
+                    if (cbbStatusFilter == null) return "All";
+                    if (cbbStatusFilter.SelectedItem != null) return cbbStatusFilter.SelectedItem.ToString();
+                    return cbbStatusFilter.Text ?? "All";
+                }
+                catch { return "All"; }
+            }
+            set
+            {
+                try
+                {
+                    if (cbbStatusFilter == null) return;
+                    if (string.IsNullOrEmpty(value)) value = "All";
+                    int idx = -1;
+                    for (int i = 0; i < cbbStatusFilter.Items.Count; i++)
+                    {
+                        if ((cbbStatusFilter.Items[i]?.ToString() ?? string.Empty).Equals(value, StringComparison.OrdinalIgnoreCase))
+                        {
+                            idx = i;
+                            break;
+                        }
+                    }
+                    if (idx >= 0) cbbStatusFilter.SelectedIndex = idx;
                 }
                 catch { }
             }

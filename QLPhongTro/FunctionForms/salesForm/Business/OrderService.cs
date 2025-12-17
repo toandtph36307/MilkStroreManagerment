@@ -33,6 +33,21 @@ namespace QLPhongTro.FunctionForms.salesForm.Business
 
             _orderRepository.InsertPayment(orderId, paymentMethod, DateTime.Now, amountPaid);
 
+
+            try
+            {
+                if (amountPaid < totalPrice)
+                {
+                    decimal owed = totalPrice - amountPaid;
+                    string note = $"Order #{orderId} - owed amount";
+                    _orderRepository.AddOrUpdateCustomerDebt(customerId, owed, note);
+
+                }
+            }
+            catch
+            {
+            }
+
             return orderId;
         }
     }

@@ -231,7 +231,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FunctionForms\UsersManagementForm\" />
+    <Folder Include="FunctionForms\VendorFrom\" />
     <Folder Include="Objects\" />
   </ItemGroup>
   <ItemGroup>
@@ -317,6 +317,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\music-album.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DatabaseScripts\CreateCustomerDebtsTable.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

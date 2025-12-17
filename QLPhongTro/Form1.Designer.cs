@@ -261,12 +261,12 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Controls.Add(this.StatisticsGroup);
             this.flowLayoutPanel1.Controls.Add(this.TaskGroup);
             this.flowLayoutPanel1.Controls.Add(this.Category);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
             this.flowLayoutPanel1.Controls.Add(this.VendorGroup);
             this.flowLayoutPanel1.Controls.Add(this.WarehouseGroup);
-            this.flowLayoutPanel1.Controls.Add(this.StatisticsGroup);
             this.flowLayoutPanel1.Controls.Add(this.dropdown);
             this.flowLayoutPanel1.Controls.Add(this.InformationGroup);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -283,7 +283,7 @@
             this.TaskGroup.Controls.Add(this.panel12);
             this.TaskGroup.Controls.Add(this.panel25);
             this.TaskGroup.Controls.Add(this.panel26);
-            this.TaskGroup.Location = new System.Drawing.Point(4, 4);
+            this.TaskGroup.Location = new System.Drawing.Point(4, 67);
             this.TaskGroup.Margin = new System.Windows.Forms.Padding(4);
             this.TaskGroup.MaximumSize = new System.Drawing.Size(279, 215);
             this.TaskGroup.MinimumSize = new System.Drawing.Size(279, 55);
@@ -408,7 +408,7 @@
             this.Category.Controls.Add(this.panel7);
             this.Category.Controls.Add(this.panel9);
             this.Category.Controls.Add(this.panel8);
-            this.Category.Location = new System.Drawing.Point(4, 67);
+            this.Category.Location = new System.Drawing.Point(4, 130);
             this.Category.Margin = new System.Windows.Forms.Padding(4);
             this.Category.MaximumSize = new System.Drawing.Size(279, 154);
             this.Category.MinimumSize = new System.Drawing.Size(279, 55);
@@ -513,7 +513,7 @@
             this.flowLayoutPanel2.Controls.Add(this.panel22);
             this.flowLayoutPanel2.Controls.Add(this.panel23);
             this.flowLayoutPanel2.Controls.Add(this.panel24);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 130);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 193);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.MaximumSize = new System.Drawing.Size(279, 57);
             this.flowLayoutPanel2.MinimumSize = new System.Drawing.Size(279, 55);
@@ -579,7 +579,7 @@
             this.VendorGroup.Controls.Add(this.panel28);
             this.VendorGroup.Controls.Add(this.panel29);
             this.VendorGroup.Controls.Add(this.panel30);
-            this.VendorGroup.Location = new System.Drawing.Point(4, 195);
+            this.VendorGroup.Location = new System.Drawing.Point(4, 258);
             this.VendorGroup.Margin = new System.Windows.Forms.Padding(4);
             this.VendorGroup.MaximumSize = new System.Drawing.Size(279, 208);
             this.VendorGroup.MinimumSize = new System.Drawing.Size(279, 55);
@@ -702,7 +702,7 @@
             this.WarehouseGroup.Controls.Add(this.panel32);
             this.WarehouseGroup.Controls.Add(this.panel33);
             this.WarehouseGroup.Controls.Add(this.panel34);
-            this.WarehouseGroup.Location = new System.Drawing.Point(4, 258);
+            this.WarehouseGroup.Location = new System.Drawing.Point(4, 321);
             this.WarehouseGroup.Margin = new System.Windows.Forms.Padding(4);
             this.WarehouseGroup.MaximumSize = new System.Drawing.Size(279, 208);
             this.WarehouseGroup.MinimumSize = new System.Drawing.Size(279, 55);
@@ -826,7 +826,7 @@
             this.StatisticsGroup.Controls.Add(this.panel14);
             this.StatisticsGroup.Controls.Add(this.panel15);
             this.StatisticsGroup.Controls.Add(this.panel16);
-            this.StatisticsGroup.Location = new System.Drawing.Point(4, 321);
+            this.StatisticsGroup.Location = new System.Drawing.Point(4, 4);
             this.StatisticsGroup.Margin = new System.Windows.Forms.Padding(4);
             this.StatisticsGroup.MaximumSize = new System.Drawing.Size(279, 208);
             this.StatisticsGroup.MinimumSize = new System.Drawing.Size(279, 55);

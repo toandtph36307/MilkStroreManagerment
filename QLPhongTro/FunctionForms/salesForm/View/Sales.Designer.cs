@@ -35,8 +35,8 @@
             this.txtSearchProduct = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbnDebt = new System.Windows.Forms.RadioButton();
+            this.rbnReturnCus = new System.Windows.Forms.RadioButton();
             this.lblPercent = new System.Windows.Forms.Label();
             this.lblVND = new System.Windows.Forms.Label();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
@@ -178,8 +178,8 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.radioButton2);
-            this.panel2.Controls.Add(this.radioButton1);
+            this.panel2.Controls.Add(this.rbnDebt);
+            this.panel2.Controls.Add(this.rbnReturnCus);
             this.panel2.Controls.Add(this.lblPercent);
             this.panel2.Controls.Add(this.lblVND);
             this.panel2.Controls.Add(this.guna2Button3);
@@ -212,34 +212,34 @@
             this.panel2.Size = new System.Drawing.Size(311, 631);
             this.panel2.TabIndex = 2;
             // 
-            // radioButton2
+            // rbnDebt
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.FlatAppearance.BorderSize = 2;
-            this.radioButton2.Font = new System.Drawing.Font("Showcard Gothic", 9F);
-            this.radioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(195)))), ((int)(((byte)(68)))));
-            this.radioButton2.Location = new System.Drawing.Point(21, 454);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(68, 22);
-            this.radioButton2.TabIndex = 34;
-            this.radioButton2.Text = "Debt";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbnDebt.AutoSize = true;
+            this.rbnDebt.FlatAppearance.BorderSize = 2;
+            this.rbnDebt.Font = new System.Drawing.Font("Showcard Gothic", 9F);
+            this.rbnDebt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(195)))), ((int)(((byte)(68)))));
+            this.rbnDebt.Location = new System.Drawing.Point(21, 454);
+            this.rbnDebt.Name = "rbnDebt";
+            this.rbnDebt.Size = new System.Drawing.Size(68, 22);
+            this.rbnDebt.TabIndex = 34;
+            this.rbnDebt.Text = "Debt";
+            this.rbnDebt.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbnReturnCus
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.FlatAppearance.BorderSize = 2;
-            this.radioButton1.Font = new System.Drawing.Font("Showcard Gothic", 9F);
-            this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(195)))), ((int)(((byte)(68)))));
-            this.radioButton1.Location = new System.Drawing.Point(21, 416);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(194, 22);
-            this.radioButton1.TabIndex = 33;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Return to Customer";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.rbnReturnCus.AutoSize = true;
+            this.rbnReturnCus.Checked = true;
+            this.rbnReturnCus.FlatAppearance.BorderSize = 2;
+            this.rbnReturnCus.Font = new System.Drawing.Font("Showcard Gothic", 9F);
+            this.rbnReturnCus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(195)))), ((int)(((byte)(68)))));
+            this.rbnReturnCus.Location = new System.Drawing.Point(21, 416);
+            this.rbnReturnCus.Name = "rbnReturnCus";
+            this.rbnReturnCus.Size = new System.Drawing.Size(194, 22);
+            this.rbnReturnCus.TabIndex = 33;
+            this.rbnReturnCus.TabStop = true;
+            this.rbnReturnCus.Text = "Return to Customer";
+            this.rbnReturnCus.UseVisualStyleBackColor = true;
+            this.rbnReturnCus.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // lblPercent
             // 
@@ -296,7 +296,7 @@
             // guna2TextBox3
             // 
             this.guna2TextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox3.DefaultText = "Remark";
+            this.guna2TextBox3.DefaultText = "";
             this.guna2TextBox3.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.guna2TextBox3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.guna2TextBox3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -307,7 +307,7 @@
             this.guna2TextBox3.Location = new System.Drawing.Point(3, 496);
             this.guna2TextBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2TextBox3.Name = "guna2TextBox3";
-            this.guna2TextBox3.PlaceholderText = "";
+            this.guna2TextBox3.PlaceholderText = "Remark";
             this.guna2TextBox3.SelectedText = "";
             this.guna2TextBox3.Size = new System.Drawing.Size(305, 57);
             this.guna2TextBox3.TabIndex = 29;
@@ -648,7 +648,7 @@
         private Guna.UI2.WinForms.Guna2Button btnPayPrinter;
         private System.Windows.Forms.Label lblVND;
         private System.Windows.Forms.Label lblPercent;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbnReturnCus;
+        private System.Windows.Forms.RadioButton rbnDebt;
     }
 }

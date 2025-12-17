@@ -46,6 +46,25 @@ namespace QLPhongTro.FunctionForms.salesForm.View
 
             var orderRepo = new OrderRepository(connectionString);
             _orderService = new OrderService(orderRepo);
+
+            rbnDebt.CheckedChanged += RbnDebt_CheckedChanged;
+            rbnReturnCus.CheckedChanged += RbnReturnCus_CheckedChanged;
+        }
+
+        private void RbnDebt_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbnDebt.Checked)
+            {
+                rbnReturnCus.Checked = false;
+            }
+        }
+
+        private void RbnReturnCus_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbnReturnCus.Checked)
+            {
+                rbnDebt.Checked = false;
+            }
         }
 
         #region listProductSuggestion
@@ -465,25 +484,53 @@ namespace QLPhongTro.FunctionForms.salesForm.View
                     decimal totalPrice = 0;
                     decimal.TryParse(lblTotalAfterDiscount.Text.Replace("VND", "").Replace(",", "").Trim(), out totalPrice);
 
-                    string paymentMethod = "cash";
+
+                    string paymentMethod = rbnDebt.Checked ? "debt" : "cash";
+                    string status = rbnDebt.Checked ? "debt" : "completed";
+
                     decimal amountPaid = 0;
                     decimal.TryParse(txtCusPay.Text.Replace(",", "").Trim(), out amountPaid);
 
-                    string status = "completed";
+                    if (amountPaid < 0)
+                    {
+                        MessageBox.Show("Số tiền thanh toán không hợp lệ.");
+                        return;
+                    }
 
-                    int orderId = _orderService.CreateOrder(
-                        customerId: _selectedCustomerId.Value,
-                        userId: userId,
-                        totalPrice: totalPrice,
-                        orderDate: DateTime.Now,
-                        status: status,
-                        discountId: discountId,
-                        orderRows: orderRows,
-                        paymentMethod: paymentMethod,
-                        amountPaid: amountPaid
-                    );
+                    if (!rbnDebt.Checked && amountPaid < totalPrice)
+                    {
+                        var result = MessageBox.Show("Số tiền nhận nhỏ hơn tổng. Bạn có muốn ghi nợ cho khách hàng không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == DialogResult.Yes)
+                        {
+                            paymentMethod = "debt";
+                            status = "debt";
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
 
-                    MessageBox.Show($"Tạo hóa đơn thành công! Mã hóa đơn: {orderId}");
+                    try
+                    {
+                        int orderId = _orderService.CreateOrder(
+                            customerId: _selectedCustomerId.Value,
+                            userId: userId,
+                            totalPrice: totalPrice,
+                            orderDate: DateTime.Now,
+                            status: status,
+                            discountId: discountId,
+                            orderRows: orderRows,
+                            paymentMethod: paymentMethod,
+                            amountPaid: amountPaid
+                        );
+
+                        MessageBox.Show($"Tạo hóa đơn thành công! Mã hóa đơn: {orderId}");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi tạo hóa đơn: " + ex.Message);
+                    }
                 }
             }
         }
@@ -586,10 +633,8 @@ namespace QLPhongTro.FunctionForms.salesForm.View
         {
 
         }
+
+
+
     }
 }
-
-
-
-
-
